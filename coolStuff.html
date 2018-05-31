@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About Me</title>
+    <link rel="stylesheet" href="myStyle.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+    <script>
+
+        $(function () {
+
+            //This function will show a message, summarizing the information
+            $("#ThatsMeButton").on("click", function () {
+                var s = "I am ";
+                s = s + $("#NickName").val() + ". ";
+                s = s  + "I'm lucky with the number " + $("#LuckyNumber").val() + ". ";
+                s =  s + "My favorite color is " + $("#FavColor").val() + ". ";
+                s = s + "Feed me " + $('input[name=Snack]:checked').val() + "! ";
+                s = s + "Here's what I think is cool: " + $("#Quote").val();
+
+                alert(s);  //An 'alert' creates the message
+            });
+
+            /* Uncomment this code to add a slider
+            var handle = $('#SliderHandle');
+            $('#LuckyNumber').slider({
+                min: 1,
+                max: 25,
+                value: 1,
+                create: function() {
+                    handle.text($(this).slider("value"));
+                },
+                slide: function(event, ui) {
+                    handle.text( ui.value);
+                }
+            });
+            */
+
+        });
+
+    </script>
+</head>
+<body>
+    <object name="Top" type="text/html" data="nav.html" style="width: 100%"></object>
+<section>
+    <div class="pageBox">
+        <h3>Cool Stuff About Me</h3>
+
+        <div class="labeler">My Nickname</div>
+        <div><input type="text" id="NickName" autofocus /></div>
+
+        <div class="labeler">My Lucky Number </div>
+        <div><input type="text" id="LuckyNumber" min="0" max="100" /></div>
+
+        <div class="labeler">My Favorite Color</div>
+        <div><input type="text" id="FavColor" /></div>
+
+        <div class="labeler">A quote or saying, or a list of things I like</div>
+        <div><textarea id="Quote" rows="7" cols="50"></textarea></div>
+
+        <div class="labeler">My Favorite Snack</div>
+        <div style="margin-top: 10px;">
+            <input type="radio" name="Snack" value="Chips" />Chips
+            <input type="radio" name="Snack" value="Chocolate" />Chocolate
+            <input type="radio" name="Snack" value="Pie" />Cake & Pie
+            <input type="radio" name="Snack" value="Vegetables" />Vegetables
+        </div>
+        <br /><br />
+        <button id="ThatsMeButton">That's Me</button>
+    </div>
+ 
+</section>
+</body>
+</html>
