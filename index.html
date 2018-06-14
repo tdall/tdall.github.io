@@ -8,11 +8,11 @@
 <body>
     <script>
         $(function () {
-            $("#nonethatsme").on("click", function () {
-                s = s + "Lucky number: " + $("#LuckyNumber").val() + ". ";
-                s = s + "Favorite color: " + $("#FavColor").val() + ". ";
-                s = s + "Cool: " + $("Quote").val() + ". ";
-                s = s + "Yum: " + $('input[name=Snack]:checked').val() + "!";
+            $("#thatsme").on("click", function () {
+                //s = s + "Lucky number: " + $("#LuckyNumber").val() + ". ";
+                //s = s + "Favorite color: " + $("#FavColor").val() + ". ";
+                //s = s + "Cool: " + $("Quote").val() + ". ";
+                //s = s + "Yum: " + $('input[name=Snack]:checked').val() + "!";
                 alert("hello world!");
             }
         }
@@ -34,7 +34,7 @@
             <input type="radio" name="Snack" value="Candy" />Candy
             <input type="radio" name="Snack" value="ice cream" />Ice Cream
             <br /><br />
-            <button id="thatsme" onclick='alert("hello world!")' >Show me</button>
+            <button id="thatsme"  >Show me</button>
         </p>
     </section>
 
