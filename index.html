@@ -8,7 +8,7 @@
 <body>
     <script>
         $(function () {
-            $("#thatsme").on("click", function () {
+            $("#thatsmeButton").on("click", function () {
                 s = s + "Lucky number: " + $("#LuckyNumber").val() + ". ";
                 s = s + "Favorite color: " + $("#FavColor").val() + ". ";
                 s = s + "Cool: " + $("Quote").val() + ". ";
@@ -27,7 +27,7 @@
             Favorite Color<br />
             <input type="text" id="FavColor" autofocus /><br />
             Quote or likes<br />
-            <textarea id="Quote" rows="7" cols="50"></textarea><br />
+            <textarea id="Quote" rows="7" cols="50"></textarea><br /><br />
             Snack<br />
             <input type="radio" name="Snack" value="popcorn" />Salty Popcorn
             <input type="radio" name="Snack" value="Candy" />Candy
