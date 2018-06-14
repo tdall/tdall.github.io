@@ -6,14 +6,33 @@
 </head>
 
 <body>
-
+    <script>
+        $(function () {
+            $("#ThatsMeButton").on("click", function () {
+                s = s + "Lucky number: " + $("#LuckyNumber").val() + ". ";
+                s = s + "Favorite color: " + $("#FavColor").val() + ". ";
+                s = s + "Cool: " + $("Quote").val() + ". ";
+                s = s + "Yum: " + $('input[name=Snack]:checked').val() + "!";
+                alert(s);
+                
+    </script>
 <!--this next line puts the header and navigation bar on every page -->
     <object name="Top" type="text/html" data="nav.html" style="width: 100%"></object>
 
     <section>
         <h3>My universe</h3>
         <p>
-            <!-- text can go here-->
+            Lucky Number<br />
+            <input type="text" id="LuckyNumber" autofocus /><br />
+            Favorite Color<br />
+            <input type="text" id="FavColor" autofocus /><br />
+            Quote or likes<br />
+            <textarea id="Quote" rows="7" cols="50"></textarea>
+            Snack<br />
+            <input type="radio" name="Snack" value="popcorn" />Popcorn
+            <input type="radio" name="Snack" value="chips" />Popcorn
+            <input type="radio" name="Snack" value="ice cream" />Popcorn
+            <button id="thatsme" text="That's me" />
         </p>
     </section>
 
