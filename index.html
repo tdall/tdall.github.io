@@ -9,11 +9,11 @@
     <script>
         $(function(){
             $("#thatsme").on("click", function () {
-                var s = "Check this out ... ";
+                var s = "Check this out ... \n";
                     s = s + "Lucky number: " + $("#LuckyNumber").val() + ". \n";
                     s = s + "Favorite color: " + $("#FavColor").val() + ". \n";
-                    s = s + "Cool: " + $("#Quote").val() + ". \n";
-                    s = s + "Yum: " + $('input[name=Snack]:checked').val() + "!";
+                    s = s + "Yum: " + $('input[name=Snack]:checked').val() + ". \n";
+                    s = s + "Cool: " + $("#Quote").val();
                     //alert("hello world!");                
                 alert(s);
                 //alert("added lucky number to s");
