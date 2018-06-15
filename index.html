@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>My Universe</title>
-		<link rel="stylesheet" href="myStyle.css" >    
-		<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
-		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-		<script>
+<head>
+    <title>Jazzier Input</title>
+    <link rel="stylesheet" href="myStyle.css">
+    <link rel="icon" href="images/Chicktech-Symetra-Icon.png">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+    <script>
 
-        $(function(){
+        $(function () {
             $("#SummaryMe").dialog({
-				autoOpen: false,
+                autoOpen: false,
                 show: {
                     effect: "bounce",
                     duration: 2500
@@ -21,106 +22,100 @@
                 }
             });
 
-            $("#thatsme").on("click", function () {
-                var color = $(#FavColor).val();
-				var contrast = invertColor(color, true);
-                var s = "<p style='background-color:" + color + "; color:" + contrast + ";'> " 
-					+ "Lucky number: " + $("#LuckyNumber").slider("value") + ". \n"
-                    + "Yum: " + $('input[name=Snack]:checked').val() + ". \n"
-                    + "Likes: " + $("#Quote").val()
-					+ "</p>";
+            $("#ThatMe").on("click", function () {
+                var color = $("#FavColor").val();
+                var contrast = invertColor(color, true);
+                var s = "<p style='background-color:" + color + "; color:" + contrast + ";'>" 
+                 + "I'm lucky with the number " + $("#LuckyNumber").slider("value") + ". "
+                 + "Feed me " + $('input[name=Snack]:checked').val() + "! "
+                 + "Here's what I think is cool: " + $("#Quote").val()
+                 + "</p>";
+
                 $("#SummaryMe").html(s);
                 $("#SummaryMe").css('background-color', color);
+                //then open the dialog
                 $("#SummaryMe").dialog("open");
-             });
+            });
 
-			 var handle = $('#SliderHandle');
 
-			$('#LuckyNumber').slider({
-			   min: 1,
-			   max: 25,
-			   value: 1,
-			   create: function() {
-				   handle.text($(this).slider("value"));
-			   },
-			   slide: function(event, ui) {
-				   handle.text( ui.value);
-			   }
-			});
+            var handle = $('#SliderHandle');
+            $('#LuckyNumber').slider({
+                min: 1,
+                max: 25,
+                value: 1,
+                create: function () {
+                    handle.text($(this).slider("value"));
+                },
+                slide: function (event, ui) {
+                    handle.text(ui.value);
+                }
+            });
+
         });
 
-		function invertColor(hex, bw) {
-		if (hex.indexOf('#') === 0) {
-			hex = hex.slice(1);
-		}
-		// convert 3-digit hex to 6-digits.
-		if (hex.length === 3) {
-			hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
-		}
-		if (hex.length !== 6) {
-			throw new Error('Invalid HEX color.');
-		}
-		var r = parseInt(hex.slice(0, 2), 16),
-			g = parseInt(hex.slice(2, 4), 16),
-			b = parseInt(hex.slice(4, 6), 16);
-		if (bw) {
-			return (r * 0.299 + g * 0.587 + b * 0.114) > 186
-				? '#000000'
-				: '#FFFFFF';
-		}
-		// invert color components
-		r = (255 - r).toString(16);
-		g = (255 - g).toString(16);
-		b = (255 - b).toString(16);
-		// pad each with zeros and return
-		return "#" + padZero(r) + padZero(g) + padZero(b);
-	}
+        function invertColor(hex, bw) {
+            if (hex.indexOf('#') === 0) {
+                hex = hex.slice(1);
+            }
+            // convert 3-digit hex to 6-digits.
+            if (hex.length === 3) {
+                hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+            }
+            if (hex.length !== 6) {
+                throw new Error('Invalid HEX color.');
+            }
+            var r = parseInt(hex.slice(0, 2), 16),
+                g = parseInt(hex.slice(2, 4), 16),
+                b = parseInt(hex.slice(4, 6), 16);
+            if (bw) {
+                return (r * 0.299 + g * 0.587 + b * 0.114) > 186
+                    ? '#000000'
+                    : '#FFFFFF';
+            }
+            // invert color components
+            r = (255 - r).toString(16);
+            g = (255 - g).toString(16);
+            b = (255 - b).toString(16);
+            // pad each with zeros and return
+            return "#" + padZero(r) + padZero(g) + padZero(b);
+        }
 
-	function padZero(str, len) {
-		len = len || 2;
-		var zeros = new Array(len).join('0');
-		return (zeros + str).slice(-len);
-	}
+        function padZero(str, len) {
+            len = len || 2;
+            var zeros = new Array(len).join('0');
+            return (zeros + str).slice(-len);
+        }
 
     </script>
 </head>
-<!--this next line puts the header and navigation bar on every page -->
-
 <body>
     <object name="Top" type="text/html" data="nav.html" style="width: 100%"></object>
-    <section>
-        <h3>My Universe - some text to force a refresh?</h3>
-        <p>
-            Lucky Number<br />
+                <h3>My Universe</h3>
+                Lucky Number <br />
+                <div id='LuckyNumber' style='margin: 10px;'>
+                    <div id="SliderHandle" class='ui-slider-handle'></div>
+                </div>
+                Favorite Color<br />
+                <div>
+                    <input type="color" value="#ffe6ff" id="FavColor" />
+                </div>
 
-            <div id='LuckyNumber' style='margin: 10px;'>
-				<div id="SliderHandle" class='ui-slider-handle'></div>
-            </div> 
+                Likes<br />
+                <div><textarea id="Quote" rows="7" cols="50"></textarea></div>
+                Yum<br />
+                
+                    <input type="radio" name="Snack" value="popcorn" />Popcorn
+                    <input type="radio" name="Snack" value="chocolate" />Chocolate
+                    <input type="radio" name="Snack" value="cake" />Cake
+                    <input type="radio" name="Snack" value="vegetables" />Vegetables
+                
+                <br /><br />
+                <button id="ThatMe">That's Me</button>
 
-            Favorite Color<br />
+        <div id="SummaryMe" title="This is Me">
+        </div>
 
-			<div>
-				<input type="color" value="#ffe6ff" id="FavColor" />
-			</div>
-				
-            Quote or likes<br />
-
-            <textarea id="Quote" rows="7" cols="50"></textarea><br /><br />
-
-            Favorite Snack<br />
-
-            <input type="radio" name="Snack" value="popcorn" />Salty Popcorn
-
-            <input type="radio" name="Snack" value="Candy" />Candy
-
-            <input type="radio" name="Snack" value="ice cream" />Ice Cream
-
-            <br /><br />
-
-            <button id="thatsme">Show me</button>
-        </p>
-
-        <div id="SummaryMe" title="This is Me"></div> 
     </section>
+
 </body>
 </html>
