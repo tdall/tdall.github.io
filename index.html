@@ -7,17 +7,48 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
+        var handle = $('#SliderHandle');
+        $('#LuckyNumber').slider({
+           min: 1,
+           max: 25,
+           value: 1,
+           create: function() {
+               handle.text($(this).slider("value"));
+           },
+           slide: function(event, ui) {
+               handle.text( ui.value);
+           }
+        }); 
         $(function(){
             $("#thatsme").on("click", function () {
+                
+                var color = $(#FavColor).val();
                 var s = "Check this out ... \n";
                     s = s + "Lucky number: " + $("#LuckyNumber").val() + ". \n";
-                    s = s + "Favorite color: " + $("#FavColor").val() + ". \n";
+                    //s = s + "Favorite color: " + $("#FavColor").val() + ". \n";
                     s = s + "Yum: " + $('input[name=Snack]:checked').val() + ". \n";
                     s = s + "Likes: " + $("#Quote").val();
                     //alert("hello world!");                
                 alert(s);
                 //alert("added lucky number to s");
+                
+                $("#SummaryMe").html(s);
+                $("#SummaryMe").css('background-color', color);
+                $("#SummaryMe").dialog("open");
              });
+        });
+        $(function(){ 
+            $("#SummaryMe").dialog({
+                autoOpen: false,
+                show: {
+                    effect: "bounce",
+                    duration: 2500
+                },
+                hide: {
+                    effect: "explode",
+                    duration: 1000
+                }
+            });
         });
     </script>
 <!--this next line puts the header and navigation bar on every page -->
@@ -28,9 +59,13 @@
         <h3>My Universe - some text to force a refresh?</h3>
         <p>
             Lucky Number<br />
+            <div id='LuckyNumber' style='margin: 10px;'>
+                <div id="SliderHandle" class='ui-slider-handle'>     </div>
+            </div> 
+
             <input type="text" id="LuckyNumber" autofocus /><br /><br />
             Favorite Color<br />
-            <input type="text" id="FavColor" autofocus /><br /><br />
+            <input type="color" id="FavColor" autofocus /><br /><br />
             Quote or likes<br />
             <textarea id="Quote" rows="7" cols="50"></textarea><br /><br />
             Favorite Snack<br />
@@ -39,7 +74,9 @@
             <input type="radio" name="Snack" value="ice cream" />Ice Cream
             <br /><br />
             <button id="thatsme">Show me</button>
+        
         </p>
+    <div id="SummaryMe" title="This is Me"></div> 
     </section>
 
 </body>
